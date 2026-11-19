@@ -82,8 +82,54 @@ const CONFIG = {
     box.addEventListener("change", () => {
       saved[box.id] = box.checked;
       try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      updateProgress(true);
+      if (box.checked && !calm) burst(box);
     });
   });
+  const prog = $("#tprog");
+  function updateProgress(animate) {
+    if (!prog) return;
+    const boxes = $$(".tests input"), n = boxes.filter((b) => b.checked).length;
+    prog.textContent = n === boxes.length ? "All done. Thank you, you are a star! 🎉" : n + " of " + boxes.length + " done";
+    if (animate) { prog.classList.remove("pop"); void prog.offsetWidth; prog.classList.add("pop"); }
+  }
+  updateProgress(false);
+  function burst(el) {
+    const r = el.getBoundingClientRect();
+    ["✨", "🎉", "✅", "⭐"].forEach((ch, i) => {
+      const s = document.createElement("span");
+      s.className = "confetti"; s.textContent = ch;
+      s.style.left = r.left + r.width / 2 + "px"; s.style.top = r.top + r.height / 2 + "px";
+      s.style.setProperty("--x", (i - 1.5) * 38 + "px"); s.style.setProperty("--y", -50 - Math.random() * 40 + "px"); s.style.setProperty("--r", (i - 1.5) * 50 + "deg");
+      document.body.appendChild(s); setTimeout(() => s.remove(), 1500);
+    });
+  }
+
+  // Stagger siblings so groups cascade in.
+  $$(".grid, .steps, .tests").forEach((g) => [...g.children].forEach((ch, i) => ch.style.setProperty("--d", i * 90 + "ms")));
+
+  // Sticky bar styling and scroll progress.
+  const nav = $("#navbar"), bar = $("#progress");
+  const onScroll = () => {
+    const y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    if (nav) nav.classList.toggle("stuck", y > 20);
+    if (bar) bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0) + ")";
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Phone leans toward the pointer (desktop only, skipped when the user prefers less motion).
+  const phone = $(".phone");
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (phone && !calm && matchMedia("(hover: hover)").matches) {
+    const hero = $(".hero");
+    hero.addEventListener("pointermove", (e) => {
+      const r = hero.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      phone.style.transform = "perspective(900px) rotateY(" + x * 12 + "deg) rotateX(" + -y * 8 + "deg)";
+    });
+    hero.addEventListener("pointerleave", () => { phone.style.transform = ""; });
+  }
 
   // Gentle reveal on scroll.
   const items = $$(".reveal");

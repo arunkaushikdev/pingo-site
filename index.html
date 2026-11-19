@@ -17,34 +17,39 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="hero">
-  <div class="wrap">
-    <nav class="nav" aria-label="Main">
+  <div class="blob b1" aria-hidden="true"></div><div class="blob b2" aria-hidden="true"></div>
+  <nav class="navbar" id="navbar" aria-label="Main"><div class="wrap nav">
       <a class="brand" href="#top"><img src="assets/icon-192.png" alt="" width="34" height="34">Pingo</a>
       <div>
         <a class="link" href="#features">What it does</a>
         <a class="link" href="#join">How to join</a>
         <a class="link" href="#faq">FAQ</a>
+        <a class="btn primary small" href="#join">Join</a>
       </div>
-    </nav>
+    </div></nav>
+    <div class="wrap">
 
     <div class="hero-grid" id="top">
       <div>
-        <span class="tag">Closed test · Android · Volunteers wanted</span>
-        <h1>A reminder that gets you to <em>actually do it.</em></h1>
-        <p class="lead">Water, medicine, lunch, standup, that bill. Pingo rings, pops up over whatever you are doing, and works with no internet and no account. We need a few real people to try it before it goes public.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="#join">Join the closed test</a>
+        <span class="tag a1"><i class="dot"></i>Closed test · Android · Volunteers wanted</span>
+        <h1 class="a2">A reminder that gets you to <em>actually do it.</em></h1>
+        <p class="lead a3">Water, medicine, lunch, standup, that bill. Pingo rings, pops up over whatever you are doing, and works with no internet and no account. We need a few real people to try it before it goes public.</p>
+        <div class="cta-row a4">
+          <a class="btn primary shine" href="#join">Join the closed test</a>
           <a class="btn ghost" href="#features">See what it does</a>
         </div>
-        <p class="note">Free · about 5 minutes to set up · you can leave any time</p>
+        <p class="note a5">Free · about 5 minutes to set up · you can leave any time</p>
       </div>
 
       <div class="phone" aria-hidden="true">
         <div class="screen">
           <div class="clock">9:00<small>Thursday</small></div>
+          <div class="rings"><i></i><i></i><i></i></div>
           <div class="popup">
+            <div class="bell">🔔</div>
             <div class="pri">HIGH PRIORITY</div>
             <div class="t">Take your tablet</div>
             <div class="d">Due at 9:00 PM</div>
@@ -52,6 +57,7 @@
             <div class="done">Taken</div>
             <div class="dis">Skip this one</div>
           </div>
+          <div class="ok"><div class="tick">✓</div><b>Taken</b><span>7 day streak</span></div>
         </div>
         <div class="float a"><span>💧</span><div><b>Drink water</b>Every 2 hours, 9 AM to 9 PM</div></div>
         <div class="float b"><span>🔥</span><div><b>6 day streak</b>Medicine, on time</div></div>
@@ -67,10 +73,10 @@
       <span class="eyebrow">Why Pingo</span>
       <h2>You are busy. Your phone should do the remembering.</h2>
       <p class="lead">Students and people who work at a screen all day skip the small things first. A notification you can swipe away does not fix that, so Pingo is built to be hard to miss and easy to answer.</p>
-      <div class="pain">
-        <span>🍱 Forgot lunch again</span><span>💊 Missed the tablet</span><span>💧 One glass of water all day</span>
-        <span>📚 Study block slipped</span><span>🧾 Bill went overdue</span><span>🧑‍💻 Standup in 2 minutes</span>
-      </div>
+      <div class="marquee" aria-hidden="true"><div class="track"><span>🍱 Forgot lunch again</span><span>💊 Missed the tablet</span><span>💧 One glass of water all day</span>
+        <span>📚 Study block slipped</span><span>🧾 Bill went overdue</span><span>🧑‍💻 Standup in 2 minutes</span><span>🍱 Forgot lunch again</span><span>💊 Missed the tablet</span><span>💧 One glass of water all day</span>
+        <span>📚 Study block slipped</span><span>🧾 Bill went overdue</span><span>🧑‍💻 Standup in 2 minutes</span></div></div>
+      <p class="sr">Forgot lunch, missed the tablet, one glass of water all day, study block slipped, bill went overdue, standup in 2 minutes.</p>
     </div>
   </div>
 </section>
@@ -142,6 +148,7 @@
       <h2>If you only do six things</h2>
       <p class="lead">Real use matters more than this list, but these cover the parts most likely to break on different phones. Ticks are saved on your device only.</p>
     </div>
+    <p class="tprog" id="tprog" aria-live="polite"></p>
     <div class="tests">
       <label class="reveal"><input type="checkbox" id="t1"><div><b>Make a reminder ring while the phone is locked</b><span>Add a High priority reminder for 2 minutes from now, lock the phone, and see if the popup and sound arrive.</span></div></label>
       <label class="reveal"><input type="checkbox" id="t2"><div><b>Add one by voice</b><span>Tap the mic and say "drink water every 2 hours". Check the form fills in correctly.</span></div></label>
