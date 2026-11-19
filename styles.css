@@ -480,7 +480,7 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
 .f-col a { text-decoration: none; color: #a9c6b8; transition: color .2s; }
 .f-col a:hover { color: var(--bell); }
 .foot-end { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 56px; padding: 22px 0; border-top: 1px solid #0f3b2c; font-size: .85rem; color: #6f9482; position: relative; z-index: 1; }
-.bigmark { font: 800 clamp(120px, 24vw, 380px)/.72 var(--display); letter-spacing: -.06em; color: #072b22; margin: -.1em 0 -.06em 2vw; user-select: none; pointer-events: none; white-space: nowrap; }
+.bigmark { font: 800 clamp(120px, 24vw, 380px)/1 var(--display); letter-spacing: -.06em; color: #072b22; margin: -.12em 0 0 2vw; padding-bottom: .12em; user-select: none; pointer-events: none; white-space: nowrap; }
 
 /* ---------- mobile dock ---------- */
 .dock { display: none; }
