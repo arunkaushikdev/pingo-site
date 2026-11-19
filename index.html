@@ -8,12 +8,15 @@
   <meta name="theme-color" content="#eef6e4">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="canonical" href="https://arunkaushikdev.github.io/pingo-site/">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arunkaushikdev.github.io/pingo-site/">
   <meta property="og:title" content="Pingo: help us test a reminder app that works">
   <meta property="og:description" content="Volunteer for the Pingo closed test on Android. Two weeks, a few minutes a day, free.">
-  <!-- After the site is live, change this to the full https:// address of og.png so link previews show it. -->
-  <meta property="og:image" content="assets/og.png">
+  <meta property="og:image" content="https://arunkaushikdev.github.io/pingo-site/assets/og.png">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://arunkaushikdev.github.io/pingo-site/assets/og.png">
   <link rel="preload" href="assets/fonts/display-800.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,7 +27,8 @@
     <a class="brand" href="#top"><img src="assets/icon-192.png" alt="" width="32" height="32">Pingo</a>
     <nav aria-label="Main">
       <a href="#day">A day with Pingo</a>
-      <a href="#details">Details</a>
+      <a href="#why">Why join</a>
+      <a href="#wall">Wall of thanks</a>
       <a href="#faq">FAQ</a>
       <a class="btn mini" href="#join">Join the test</a>
     </nav>
@@ -37,7 +41,7 @@
   <div class="ghost" aria-hidden="true">7:00</div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="pill"><i></i>Volunteer testers wanted for the Android app</p>
+      <p class="pill"><i></i><span data-status>Closed test is open: volunteers wanted</span></p>
       <h1>A reminder you actually act on.</h1>
       <p class="lead">Pingo rings, pops up over whatever you are doing, and asks one thing: done, snooze or skip. It works offline, with no account.</p>
       <div class="cta">
@@ -154,7 +158,7 @@
               <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="tr"/><circle cx="60" cy="60" r="52" class="pr"/></svg>
               <div class="rt"><b>24:12</b><span>Pomodoro</span></div>
             </div>
-            <div class="quiet"><span>🔕</span><div><strong>3 reminders held</strong><span>They vibrate only until the break</span></div></div>
+            <div class="qrow"><span>🔕</span><div><strong>3 reminders held</strong><span>They vibrate only until the break</span></div></div>
             <div class="quiet hi2"><span>🔔</span><div><strong>High priority still rings</strong><span>If you allow it in quiet hours</span></div></div>
           </div>
 
@@ -242,30 +246,91 @@
   </div>
 </section>
 
+<!-- WHY JOIN ------------------------------------------------------>
+<section class="night sec" id="why">
+  <div class="wrap">
+    <h2>Why spend two weeks on a new app?</h2>
+    <p class="lead">Fair question. Here is the honest trade: a little of your time for a real say in the app, and your name on something you helped build.</p>
+    <div class="trade">
+      <div class="give">
+        <h3>What we ask</h3>
+        <ul>
+          <li><b>5 minutes</b> to set up</li>
+          <li><b>A few minutes a day</b> for 14 days, just by using your reminders</li>
+          <li><b>Honest feedback</b> when something is off</li>
+        </ul>
+        <p>You can leave whenever you like. We only ask you to stay the full 14 days if you can.</p>
+      </div>
+      <div class="get">
+        <h3>What you get</h3>
+        <ul>
+          <li><b>A real say.</b> Every bug report and idea is read by the person who wrote the code, and the best ones ship.</li>
+          <li><b>Your name on the Wall of Thanks,</b> with your role, whether you are a student or a working professional.</li>
+          <li><b>A Founding Tester certificate</b> with its own verification link, ready to add to LinkedIn or a CV as proof of hands-on testing work.</li>
+          <li><b>Early access</b> to every feature before the public release.</li>
+          <li><b>A tool that fixes a real problem:</b> missed meals, medicine and deadlines.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="maker">
+      <p><b>Who is behind Pingo.</b> Arun Datt Kaushik, an independent Android developer who also makes PDF Toolkit on Google Play. Pingo has no company behind it and no account to create, so there is nothing to sell you.</p>
+      <p class="mk-links" data-hide-if-empty><a data-social="linkedin">LinkedIn</a><a data-social="instagram">Instagram</a><a data-social="facebook">Facebook</a></p>
+    </div>
+  </div>
+</section>
+
 <!-- JOIN ------------------------------------------------------------>
 <section class="night sec join" id="join">
   <div class="wrap join-grid">
     <div>
-      <h2>Help us test it for 14 days</h2>
-      <p class="lead">Google asks every new app to be tested by at least 12 real people, who stay signed up for 14 days in a row, before it can go public.</p>
+      <h2>Join in four steps</h2>
+      <p class="lead">Google requires every new app to be tested by at least 12 real people, who stay opted in for 14 days in a row, before it can go public. That is why we need you.</p>
       <div id="meter" class="meterbox"><b id="meterText"></b><div class="meter"><i id="meterBar"></i></div></div>
 
       <ol class="stepper">
-        <li><div><h3>Tell us your Gmail</h3><p>Play only lets people on the tester list install the test version, and it knows you by your Google account. Send the Gmail you use on your phone.</p>
-          <a class="btn primary" data-link="signup">Add me as a tester</a></div></li>
-        <li><div><h3>Accept the invite</h3><p>When we add you, open the test link on your Android phone, tap Become a tester, and install Pingo from Play. It is a normal Play Store install.</p>
+        <li><div><h3>Join the tester group</h3><p>Use the Gmail you have on your Android phone. Joining the group is what gives that account access to the test version. It takes one tap and needs no approval from us.</p>
+          <a class="btn primary" data-link="group">Join the tester group</a></div></li>
+        <li><div><h3>Tell us who you are</h3><p>A short form: your name, whether you are a student or a professional, and where you study or work. This is only for the Wall of Thanks and your certificate, and your name is shown only if you tick the box.</p>
+          <a class="btn quiet dk" data-link="form">Fill the 1-minute form</a></div></li>
+        <li><div><h3>Accept the invite and install</h3><p>Open the test link on your Android phone, tap Become a tester, then install Pingo from Play. It is a normal Play Store install.</p>
           <a class="btn quiet dk" data-link="optin">Open the test link</a></div></li>
-        <li><div><h3>Use it for 14 days</h3><p>Add the reminders you really need and let it run. Staying signed up for the full 14 days is what counts.</p>
+        <li><div><h3>Use it for 14 days</h3><p>Add the reminders you really need and let it run. Tell us what breaks, what annoys you and what is missing.</p>
           <a class="btn quiet dk" data-link="feedback">Send feedback</a></div></li>
       </ol>
+
+      <div class="reach">
+        <h3>Prefer to ask first?</h3>
+        <p>Message us and we will walk you through it.</p>
+        <div class="reach-btns">
+          <a class="btn quiet dk" data-wa data-count="whatsapp">Chat on WhatsApp</a>
+          <a class="btn quiet dk" data-email data-keep data-subject="Pingo closed test" data-count="email">Email us</a>
+          <a class="btn quiet dk" data-social="linkedin">Message on LinkedIn</a>
+        </div>
+      </div>
     </div>
 
     <aside class="fourteen" aria-label="14 day plan">
       <h3>Please stay for all 14 days</h3>
       <div class="dots" id="dots"></div>
       <p>If someone leaves early, the count restarts for everyone. Not sure you can stay? It is fine to say no now.</p>
-      <a class="btn quiet dk" id="share">Share with a friend</a>
+      <div class="sharebox">
+        <b>Know someone who would help?</b>
+        <div class="sharebtns">
+          <a data-share="linkedin">LinkedIn</a><a data-share="facebook">Facebook</a><a data-share="whatsapp">WhatsApp</a><a href="#" data-share="copy">Copy link</a>
+        </div>
+        <span>For Instagram, copy the link and add it to your story or bio.</span>
+      </div>
     </aside>
+  </div>
+</section>
+
+<!-- WALL OF THANKS -------------------------------------------------->
+<section class="night sec" id="wall">
+  <div class="wrap">
+    <h2 id="wall-h">Wall of Thanks</h2>
+    <p class="lead">The founding testers of Pingo. Each name is added only with the person's own permission, and each one gets a certificate they can show as proof of work once the app is live.</p>
+    <p class="tprog" id="wallcount" aria-live="polite"></p>
+    <ol class="wall" id="wallgrid"></ol>
   </div>
 </section>
 
@@ -294,7 +359,11 @@
     <div>
       <details><summary>Is it free?</summary><p>Yes. The test is free and nothing is charged. Ads and paid features are not part of this test.</p></details>
       <details><summary>What do I need?</summary><p>An Android phone with Android 7.0 or newer, the Google Play Store, and a Gmail or Google account. iPhone is not supported yet.</p></details>
-      <details><summary>Why do you need my Gmail?</summary><p>Play lets only the Google accounts on the tester list join a closed test. We use the address only to add you to that list and to contact you about the test.</p></details>
+      <details><summary>Why do you need my Gmail?</summary><p>Play lets only the Google accounts on a tester list join a closed test, so the Gmail on your phone is how it knows you. We use it only for that and to contact you about the test.</p></details>
+      <details><summary>Will my name be shown?</summary><p>Only if you tick the box in the form. If you do, your name, role and organisation appear on the Wall of Thanks. If you do not, you still count as a tester, and nothing about you is shown. You can ask us to remove your name at any time.</p></details>
+      <details><summary>How do I get my certificate?</summary><p>When the 14 days are done and the app is live, each person on the Wall of Thanks gets a Founding Tester certificate page with a link that anyone can open to verify it. You can download it as an image or add it to LinkedIn from there.</p></details>
+      <details><summary>How much time will it take?</summary><p>About 5 minutes to set up, then a few minutes a day, just from using your reminders. The 14 days run on their own in the background.</p></details>
+      <details><summary>I do not have a Gmail account. Can I still join?</summary><p>Play needs a Google account to give you access, but you can create a free one in a minute and use it on your phone only for this.</p></details>
       <details><summary>Why do some phones need extra settings?</summary><p>Xiaomi, Redmi, Poco, Oppo, Vivo, Realme and Huawei phones can block pop-ups and late reminders to save battery. Pingo has a Permission check in Settings that walks you through them. If a reminder is late or missing, tell us, because that is exactly what we are testing.</p></details>
       <details><summary>What happens to my reminders?</summary><p>They stay on your phone. Pingo has no account and works offline. You can export a backup file yourself whenever you like. See the <a href="privacy.html">privacy page</a>.</p></details>
       <details><summary>Can I leave the test?</summary><p>Yes, any time. We only ask that you stay for the full 14 days if you can, because the count restarts for everyone when someone leaves early.</p></details>
@@ -306,19 +375,42 @@
 <section class="sunrise">
   <div class="wrap">
     <h2>Be one of the first twelve.</h2>
-    <p class="lead">Two weeks, a few minutes a day. Thank you for helping us make reminders that work.</p>
-    <a class="btn primary dark" data-link="signup">Add me as a tester</a>
+    <p class="lead">Two weeks, a few minutes a day, and your name on the Wall of Thanks. Thank you for helping us make reminders that work.</p>
+    <a class="btn primary dark" href="#join">Join the closed test</a>
   </div>
 </section>
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>© <span id="year"></span> Pingo, made by Arun Datt Kaushik</span>
-    <span><a href="privacy.html">Privacy</a> <a href="terms.html">Terms</a> <a data-email href="#"></a></span>
+  <div class="wrap foot">
+    <div class="f-brand">
+      <a class="brand" href="#top"><img src="assets/icon-192.png" alt="" width="36" height="36">Pingo</a>
+      <p>A reminder you actually act on. Offline, private, made for people who forget to eat, drink water and take medicine.</p>
+      <a class="btn primary" href="#join">Join the closed test</a>
+    </div>
+    <nav class="f-col" aria-label="The test">
+      <h4>The test</h4>
+      <a href="#day">A day with Pingo</a><a href="#why">Why join</a><a href="#join">How to join</a><a href="#wall">Wall of Thanks</a><a href="#faq">Questions</a>
+    </nav>
+    <nav class="f-col" aria-label="Legal">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms and Conditions</a>
+    </nav>
+    <nav class="f-col" aria-label="Contact" data-hide-if-empty>
+      <h4>Say hello</h4>
+      <a data-email href="#"></a><a data-wa>WhatsApp</a><a data-social="linkedin">LinkedIn</a><a data-social="instagram">Instagram</a><a data-social="facebook">Facebook</a>
+    </nav>
   </div>
+  <div class="wrap foot-end">
+    <span>© <span id="year"></span> Pingo, made by Arun Datt Kaushik. Android is a trademark of Google LLC.</span>
+    <span>Stats on this site are cookie-free and anonymous.</span>
+  </div>
+  <div class="bigmark" aria-hidden="true">Pingo</div>
 </footer>
 
+<div class="dock" id="dock"><a class="btn primary" href="#join">Join the closed test</a></div>
+
+<script src="config.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

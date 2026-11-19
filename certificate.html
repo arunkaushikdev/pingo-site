@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Founding Tester certificate | Pingo</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="doc-page">
+<header class="nav"><div class="wrap bar"><a class="brand" href="index.html"><img src="assets/icon-192.png" alt="" width="32" height="32">Pingo</a><nav><a href="index.html#wall">Wall of Thanks</a><a href="index.html">Home</a></nav></div></header>
+<main class="cert-wrap">
+  <h1 id="h" style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:6px">Founding Tester certificate</h1>
+  <p class="cert-msg" id="msg">Loading...</p>
+  <div id="box" hidden>
+    <canvas id="c" width="1600" height="1130" role="img" aria-label="Founding Tester certificate"></canvas>
+    <div class="cert-actions">
+      <a class="btn primary" id="dl" href="#">Download as image</a>
+      <a class="btn quiet" id="li" target="_blank" rel="noopener">Add to LinkedIn</a>
+      <a class="btn quiet" href="#" onclick="window.print();return false">Print</a>
+    </div>
+    <p class="cert-msg">This page is the verification link. Anyone who opens it sees the name below on the official Pingo site, so you can share this link with a recruiter or add it to your CV.</p>
+  </div>
+</main>
+<script src="config.js"></script>
+<script>
+(function(){
+  var id=new URLSearchParams(location.search).get("id")||"";
+  var t=TESTERS.filter(function(x){return x.id===id})[0];
+  var msg=document.getElementById("msg");
+  if(!t){msg.textContent="We could not find a certificate for this link. Check the address, or write to the maker if you think this is a mistake.";return;}
+  document.title=t.name+" | Founding Tester | Pingo";
+  msg.textContent="Issued to "+t.name+(t.role?", "+t.role:"")+(t.org?", "+t.org:"")+".";
+  document.getElementById("box").hidden=false;
+  var url=(CONFIG.siteUrl||location.origin+location.pathname.replace(/[^\/]*$/,""))+"certificate.html?id="+encodeURIComponent(t.id);
+  var end=CONFIG.testEnd||"", start=CONFIG.testStart||"";
+  var when=start&&end?start+" to "+end:(end||"");
+  var d=new Date(), yr=d.getFullYear(), mo=d.getMonth()+1;
+  var m=/(\d{4})-(\d{2})/.exec(CONFIG.testEnd||""); if(m){yr=+m[1];mo=+m[2];}
+  document.getElementById("li").href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name="+encodeURIComponent("Pingo Founding Tester")+"&organizationName="+encodeURIComponent("Pingo")+"&issueYear="+yr+"&issueMonth="+mo+"&certUrl="+encodeURIComponent(url);
+  function draw(){
+    var c=document.getElementById("c"),x=c.getContext("2d"),W=c.width,H=c.height;
+    x.fillStyle="#fbfdf6";x.fillRect(0,0,W,H);
+    var g=x.createLinearGradient(0,0,W,0);g.addColorStop(0,"#fff4c2");g.addColorStop(1,"#e1f3e8");
+    x.fillStyle=g;x.fillRect(0,0,W,260);
+    x.strokeStyle="#0b3a2d";x.lineWidth=14;x.strokeRect(40,40,W-80,H-80);
+    x.strokeStyle="#fed839";x.lineWidth=4;x.strokeRect(68,68,W-136,H-136);
+    var img=new Image();img.onload=function(){x.drawImage(img,W/2-48,110,96,96);rest();};img.onerror=rest;img.src="assets/icon-512.png";
+    function rest(){
+      x.textAlign="center";x.fillStyle="#0b2a21";
+      x.font="800 64px 'Inter Display', Inter, sans-serif";x.fillText("Pingo",W/2,270);
+      x.font="400 30px Inter, sans-serif";x.fillStyle="#4d6b5d";x.fillText("CERTIFICATE OF PARTICIPATION",W/2,340);
+      x.fillStyle="#0b2a21";x.font="800 92px 'Inter Display', Inter, sans-serif";x.fillText("Founding Tester",W/2,470);
+      x.font="400 32px Inter, sans-serif";x.fillStyle="#4d6b5d";x.fillText("This certifies that",W/2,560);
+      var size=120,nm=t.name;x.fillStyle="#157f42";
+      do{x.font="800 "+size+"px 'Inter Display', Inter, sans-serif";size-=4;}while(x.measureText(nm).width>W-300&&size>40);
+      x.fillText(nm,W/2,690);
+      var sub=[t.role,t.org].filter(Boolean).join(", ");
+      if(sub){x.font="600 36px Inter, sans-serif";x.fillStyle="#0b2a21";x.fillText(sub,W/2,755);}
+      x.font="400 32px Inter, sans-serif";x.fillStyle="#4d6b5d";
+      x.fillText("took part in the 14-day closed test of the Pingo Android app"+(when?" ("+when+")":"")+",",W/2,840);
+      x.fillText("reporting bugs and ideas that helped shape the first public release.",W/2,885);
+      x.strokeStyle="#0b2a21";x.lineWidth=2;x.beginPath();x.moveTo(W/2-230,960);x.lineTo(W/2+230,960);x.stroke();
+      x.fillStyle="#0b2a21";x.font="600 30px Inter, sans-serif";x.fillText("Arun Datt Kaushik, Developer of Pingo",W/2,1005);
+      x.font="400 22px Inter, sans-serif";x.fillStyle="#4d6b5d";x.fillText("Verify: "+url,W/2,1045);
+      document.getElementById("dl").onclick=function(e){e.preventDefault();var a=document.createElement("a");a.download="pingo-founding-tester-"+t.id+".png";a.href=c.toDataURL("image/png");a.click();};
+    }
+  }
+  (document.fonts&&document.fonts.load?Promise.all([document.fonts.load("800 64px 'Inter Display'"),document.fonts.load("400 30px Inter"),document.fonts.load("600 30px Inter")]):Promise.resolve()).then(draw,draw);
+})();
+</script>
+</body>
+</html>

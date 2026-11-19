@@ -1,28 +1,13 @@
-/*
- * Everything you need to edit lives in this CONFIG block.
- * Leave a value as "" and its button shows "Opens soon" instead of a dead link.
- */
-const CONFIG = {
-  // Google Form (or any form) that collects each volunteer's Gmail address.
-  signupUrl: "",
-  // The "Join on the web" opt-in link from Play Console -> Closed testing -> Testers (appears after the first release is approved).
-  optInUrl: "",
-  // Where testers send bugs and ideas (Google Form, WhatsApp group invite, etc.).
-  feedbackUrl: "",
-  // Contact email shown in the footer and on the privacy page.
-  contactEmail: "",
-  // How many volunteers have joined so far. 0 hides the counter.
-  testersJoined: 0,
-  testersNeeded: 12,
-};
-
 (function () {
   const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
   // Wire the buttons that point at CONFIG urls.
-  const map = { signup: CONFIG.signupUrl, optin: CONFIG.optInUrl, feedback: CONFIG.feedbackUrl };
+  const map = {
+    signup: CONFIG.groupUrl || CONFIG.formUrl, group: CONFIG.groupUrl || CONFIG.formUrl,
+    form: CONFIG.formUrl, optin: CONFIG.optInUrl, feedback: CONFIG.feedbackUrl,
+  };
   $$("[data-link]").forEach((el) => {
     const url = map[el.dataset.link];
     if (url) {
@@ -33,45 +18,110 @@ const CONFIG = {
       el.setAttribute("aria-disabled", "true");
       el.removeAttribute("href");
       el.dataset.label = el.textContent;
-      el.textContent = "Opens soon";
+      el.textContent = "Link coming soon";
     }
   });
 
-  // Contact email.
+  // Contact email, WhatsApp and social links. Anything not set in config.js is removed.
   $$("[data-email]").forEach((el) => {
     if (CONFIG.contactEmail) {
-      el.href = "mailto:" + CONFIG.contactEmail;
-      el.textContent = CONFIG.contactEmail;
-    } else {
-      el.remove();
+      el.href = "mailto:" + CONFIG.contactEmail + (el.dataset.subject ? "?subject=" + encodeURIComponent(el.dataset.subject) : "");
+      if (!el.dataset.keep) el.textContent = CONFIG.contactEmail;
+    } else el.remove();
+  });
+  $$("[data-wa]").forEach((el) => {
+    if (!CONFIG.whatsappNumber) return el.remove();
+    el.href = "https://wa.me/" + CONFIG.whatsappNumber + "?text=" + encodeURIComponent("Hi Arun, I would like to join the Pingo closed test.");
+    el.target = "_blank"; el.rel = "noopener";
+  });
+  const socials = { linkedin: CONFIG.linkedinUrl, facebook: CONFIG.facebookUrl, instagram: CONFIG.instagramUrl };
+  $$("[data-social]").forEach((el) => {
+    const u = socials[el.dataset.social];
+    if (u) { el.href = u; el.target = "_blank"; el.rel = "noopener"; } else el.remove();
+  });
+  $$("[data-hide-if-empty]").forEach((box) => { if (!box.querySelector("a")) box.hidden = true; });
+
+  // Open / closed status.
+  $$("[data-status]").forEach((el) => {
+    el.textContent = CONFIG.testOpen ? "Closed test is open: volunteers wanted" : "Closed test opens soon";
+  });
+
+  // Seats: the real number of names on the wall (or the number you set in config.js), never invented.
+  const joined = Math.max(CONFIG.testersJoined || 0, TESTERS.length);
+  const meter = $("#meter");
+  if (meter) {
+    if (joined > 0) {
+      $("#meterText").textContent = joined + " of " + CONFIG.testersNeeded + " seats taken";
+      $("#meterBar").style.width = Math.min(100, Math.round((joined / CONFIG.testersNeeded) * 100)) + "%";
+    } else meter.hidden = true;
+  }
+
+  // Share buttons.
+  const pageUrl = (CONFIG.siteUrl || location.href).split("#")[0];
+  const msg = "I'm helping test Pingo, an Android reminder app for water, medicine, meals and work. They need 12 volunteers for a 14-day test: ";
+  const links = {
+    whatsapp: "https://wa.me/?text=" + encodeURIComponent(msg + pageUrl),
+    linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl),
+    facebook: "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl),
+  };
+  $$("[data-share]").forEach((el) => {
+    const k = el.dataset.share;
+    if (links[k]) { el.href = links[k]; el.target = "_blank"; el.rel = "noopener"; }
+    if (k === "copy") {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        const done = () => { const t = el.textContent; el.textContent = "Link copied"; setTimeout(() => (el.textContent = t), 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(pageUrl).then(done, done); else done();
+      });
     }
   });
 
-  // Tester counter.
-  const meter = $("#meter");
-  if (meter) {
-    if (CONFIG.testersJoined > 0) {
-      const pct = Math.min(100, Math.round((CONFIG.testersJoined / CONFIG.testersNeeded) * 100));
-      $("#meterText").textContent = CONFIG.testersJoined + " of " + CONFIG.testersNeeded + " testers have joined";
-      $("#meterBar").style.width = pct + "%";
-    } else {
-      meter.hidden = true;
+  // Wall of Thanks: real names only. Open seats are shown as seats, not as fake people.
+  const wall = $("#wallgrid");
+  if (wall) {
+    const total = Math.max(CONFIG.testersNeeded, TESTERS.length);
+    const initials = (n) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+    for (let i = 0; i < total; i++) {
+      const t = TESTERS[i], li = document.createElement("li");
+      if (t) {
+        li.className = "seat on";
+        const av = document.createElement("span"); av.className = "av"; av.textContent = initials(t.name);
+        const box = document.createElement("div");
+        const nm = document.createElement("b"); nm.textContent = t.name;
+        const rl = document.createElement("span"); rl.className = "role"; rl.textContent = [t.role, t.org].filter(Boolean).join(", ");
+        box.append(nm, rl);
+        const row = document.createElement("div"); row.className = "seatlinks";
+        if (t.link) { const a = document.createElement("a"); a.href = t.link; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Profile"; row.append(a); }
+        const c = document.createElement("a"); c.href = "certificate.html?id=" + encodeURIComponent(t.id); c.textContent = "Certificate"; row.append(c);
+        box.append(row); li.append(av, box);
+      } else {
+        li.className = "seat open";
+        li.innerHTML = '<span class="av">+</span><div><b>Seat open</b><span class="role">Your name and role could be here</span><div class="seatlinks"><a href="#join">Take this seat</a></div></div>';
+      }
+      wall.appendChild(li);
     }
+    const wc = $("#wallcount");
+    if (wc) wc.textContent = TESTERS.length + " of " + total + " seats filled";
   }
 
-  // Share with a friend (WhatsApp / native share sheet).
-  const share = $("#share");
-  if (share) {
-    const text = "I'm helping test Pingo, a reminder app for food, meds, water and work. They need a few testers: " + location.href.split("#")[0];
-    share.href = "https://wa.me/?text=" + encodeURIComponent(text);
-    share.target = "_blank";
-    share.rel = "noopener";
-    if (navigator.share) {
-      share.addEventListener("click", (e) => {
-        e.preventDefault();
-        navigator.share({ title: "Pingo closed test", text, url: location.href.split("#")[0] }).catch(() => {});
-      });
-    }
+  // Visitor stats with GoatCounter: no cookies, no personal data, counts real page views and device types.
+  if (CONFIG.goatcounterCode) {
+    const s = document.createElement("script");
+    s.async = true; s.src = "https://gc.zgo.at/count.js";
+    s.dataset.goatcounter = "https://" + CONFIG.goatcounterCode + ".goatcounter.com/count";
+    document.head.appendChild(s);
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("[data-link],[data-wa],[data-share],[data-social],[data-count]");
+      if (!a || !window.goatcounter || !window.goatcounter.count) return;
+      const k = a.dataset.link || a.dataset.share || a.dataset.social || a.dataset.count || "whatsapp";
+      window.goatcounter.count({ path: "click/" + k, title: "Click: " + k, event: true });
+    });
+  }
+
+  // Mobile dock: a Join button that stays in reach, and steps aside while the Join section is on screen.
+  const dock = $("#dock"), joinSec = $("#join");
+  if (dock && joinSec && "IntersectionObserver" in window) {
+    new IntersectionObserver((en) => dock.classList.toggle("off", en[0].isIntersecting)).observe(joinSec);
   }
 
   // Test plan checkboxes remember their state on this device only.

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arunkaushikdev.github.io/pingo-site/sitemap.xml
