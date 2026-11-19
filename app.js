@@ -104,20 +104,6 @@
     if (wc) wc.textContent = TESTERS.length + " of " + total + " seats filled";
   }
 
-  // Visitor stats with GoatCounter: no cookies, no personal data, counts real page views and device types.
-  if (CONFIG.goatcounterCode) {
-    const s = document.createElement("script");
-    s.async = true; s.src = "https://gc.zgo.at/count.js";
-    s.dataset.goatcounter = "https://" + CONFIG.goatcounterCode + ".goatcounter.com/count";
-    document.head.appendChild(s);
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest("[data-link],[data-wa],[data-share],[data-social],[data-count]");
-      if (!a || !window.goatcounter || !window.goatcounter.count) return;
-      const k = a.dataset.link || a.dataset.share || a.dataset.social || a.dataset.count || "whatsapp";
-      window.goatcounter.count({ path: "click/" + k, title: "Click: " + k, event: true });
-    });
-  }
-
   // Mobile dock: a Join button that stays in reach, and steps aside while the Join section is on screen.
   const dock = $("#dock"), joinSec = $("#join");
   if (dock && joinSec && "IntersectionObserver" in window) {

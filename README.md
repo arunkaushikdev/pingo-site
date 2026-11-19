@@ -9,9 +9,8 @@ Plain HTML, CSS and JS. No build step, no trackers, no external fonts.
 3. **Opt-in link.** After your closed test is live, copy the "Join on the web" link into `optInUrl`.
 4. **Feedback.** A form or WhatsApp group invite in `feedbackUrl`.
 5. **Contact.** `contactEmail`, `whatsappNumber` (digits with country code), and your `linkedinUrl`, `facebookUrl`, `instagramUrl`.
-6. **Visitor stats.** Sign up free at goatcounter.com, pick a code (for example `pingo`), put it in `goatcounterCode`. Your dashboard at `CODE.goatcounter.com` then shows real visits, devices, browsers, screen sizes, countries, referrers and button clicks. No cookies.
-7. **Wall of Thanks.** When someone ticked the box, add them to `TESTERS` in `config.js`. They get a certificate at `certificate.html?id=THEIR_ID`.
-8. When the 14 days finish, set `testStart` and `testEnd` (YYYY-MM-DD) so certificates show the dates.
+6. **Wall of Thanks.** When someone ticked the box, add them to `TESTERS` in `config.js`. They get a certificate at `certificate.html?id=THEIR_ID`.
+7. When the 14 days finish, set `testStart` and `testEnd` (YYYY-MM-DD) so certificates show the dates.
 
 ## Publish
 
