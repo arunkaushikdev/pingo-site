@@ -493,14 +493,16 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
   .foot { grid-template-columns: 1fr 1fr; }
   .f-brand { grid-column: 1 / -1; }
   footer { padding-bottom: 70px; }
-  .doc-page footer { padding-bottom: 0; }
 }
 @media (min-width: 901px) and (max-width: 1150px) { .wall { grid-template-columns: repeat(2, 1fr); } }
-.doc-page footer { padding: 30px 0; margin-top: 0; }
-.doc-page footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
-.doc-page footer a { color: #cfe3d8; margin-left: 18px; }
 .cert-wrap { width: min(980px, 100% - 32px); margin: 0 auto; padding: 30px 0 80px; }
 .cert-wrap canvas { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 20px 60px -20px rgba(2,34,29,.4); background: #fff; }
 .cert-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0; }
 .cert-msg { color: var(--muted); max-width: 40rem; }
 .popup .sn { font-size: .66em; margin-top: 1em; }
+
+/* sample wall entries */
+.seat.sample { position: relative; background: #0f3b2c; border: 1px dashed #2b6f59; }
+.seat.sample .av { color: #02221d; background: linear-gradient(135deg, var(--c1), var(--c2)); }
+.seat .tag { display: inline-block; align-self: flex-start; margin-top: 6px; padding: 1px 9px; border-radius: 99px; font-size: .72rem; background: #14493a; color: #a9c6b8; }
+.wallnote { color: #8fb0a0; font-size: .9rem; margin-top: 10px; }

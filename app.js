@@ -29,6 +29,7 @@
       if (!el.dataset.keep) el.textContent = CONFIG.contactEmail;
     } else el.remove();
   });
+  if (!CONFIG.contactEmail) $$("[data-if-email]").forEach((el) => el.remove());
   $$("[data-wa]").forEach((el) => {
     if (!CONFIG.whatsappNumber) return el.remove();
     el.href = "https://wa.me/" + CONFIG.whatsappNumber + "?text=" + encodeURIComponent("Hi Arun, I would like to join the Pingo closed test.");
@@ -81,9 +82,26 @@
   if (wall) {
     const total = Math.max(CONFIG.testersNeeded, TESTERS.length);
     const initials = (n) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+    // Until real testers join, show clearly labelled examples so visitors can see what the wall will look like.
+    const SAMPLES = [
+      { name: "Riya Sharma", role: "Student", org: "Example college", c: ["#ffd93a", "#ff9f43"] },
+      { name: "Karan Mehta", role: "Software engineer", org: "Example company", c: ["#7be0b0", "#38b6a0"] },
+      { name: "Sana Ali", role: "Nurse", org: "Example hospital", c: ["#9ad0ff", "#6e9bff"] },
+    ];
+    const useSamples = TESTERS.length === 0;
     for (let i = 0; i < total; i++) {
       const t = TESTERS[i], li = document.createElement("li");
-      if (t) {
+      if (useSamples && SAMPLES[i]) {
+        const s = SAMPLES[i];
+        li.className = "seat sample";
+        li.style.setProperty("--c1", s.c[0]); li.style.setProperty("--c2", s.c[1]);
+        const av = document.createElement("span"); av.className = "av"; av.textContent = initials(s.name);
+        const box = document.createElement("div");
+        const nm = document.createElement("b"); nm.textContent = s.name;
+        const rl = document.createElement("span"); rl.className = "role"; rl.textContent = s.role + ", " + s.org;
+        const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = "Example entry";
+        box.append(nm, rl, tag); li.append(av, box);
+      } else if (t) {
         li.className = "seat on";
         const av = document.createElement("span"); av.className = "av"; av.textContent = initials(t.name);
         const box = document.createElement("div");
@@ -102,6 +120,11 @@
     }
     const wc = $("#wallcount");
     if (wc) wc.textContent = TESTERS.length + " of " + total + " seats filled";
+    if (useSamples && wc) {
+      const note = document.createElement("p"); note.className = "wallnote";
+      note.textContent = "The first three seats show example entries. Real testers replace them as they join.";
+      wc.after(note);
+    }
   }
 
   // Mobile dock: a Join button that stays in reach, and steps aside while the Join section is on screen.
