@@ -520,19 +520,11 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
 #wall { padding-bottom: clamp(8px, 2vw, 24px); }
 #plan { padding-top: clamp(40px, 6vw, 80px); }
 
-/* nav logo: a soft pulse, and the icon rings like a bell now and then */
-.nav .brand img { animation: logoRing 6s ease-in-out infinite, logoPulse 3s ease-out infinite; transform-origin: 50% 20%; transition: transform .25s; }
-.nav .brand:hover img { animation-play-state: paused; transform: scale(1.12) rotate(-6deg); }
-@keyframes logoRing {
-  0%, 62%, 100% { transform: rotate(0); }
-  66% { transform: rotate(16deg); } 70% { transform: rotate(-14deg); } 74% { transform: rotate(10deg); }
-  78% { transform: rotate(-8deg); } 82% { transform: rotate(4deg); } 86% { transform: rotate(0); }
-}
-@keyframes logoPulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 217, 58, .55); }
-  70%, 100% { box-shadow: 0 0 0 12px rgba(255, 217, 58, 0); }
-}
-@media (prefers-reduced-motion: reduce) { .nav .brand img { animation: none; } }
+/* nav logo: scales up with a small shake, only on hover */
+.nav .brand img { transition: transform .25s cubic-bezier(.3,1.5,.5,1); }
+.nav .brand:hover img { animation: logoShake .5s ease-in-out; transform: scale(1.12); }
+@keyframes logoShake { 0%, 100% { rotate: 0deg; } 25% { rotate: -9deg; } 50% { rotate: 8deg; } 75% { rotate: -4deg; } }
+@media (prefers-reduced-motion: reduce) { .nav .brand:hover img { animation: none; } }
 
 /* heads-up timeline: fills the tile and draws itself in */
 .t-many .points { flex: 1; margin-top: 28px; padding-top: 0; align-content: space-between; }
