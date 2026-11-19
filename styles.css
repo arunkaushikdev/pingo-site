@@ -501,8 +501,16 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
 .cert-msg { color: var(--muted); max-width: 40rem; }
 .popup .sn { font-size: .66em; margin-top: 1em; }
 
-/* sample wall entries */
-.seat.sample { position: relative; background: #0f3b2c; border: 1px dashed #2b6f59; }
-.seat.sample .av { color: #02221d; background: linear-gradient(135deg, var(--c1), var(--c2)); }
-.seat .tag { display: inline-block; align-self: flex-start; margin-top: 6px; padding: 1px 9px; border-radius: 99px; font-size: .72rem; background: #14493a; color: #a9c6b8; }
-.wallnote { color: #8fb0a0; font-size: .9rem; margin-top: 10px; }
+/* wall of thanks: moving strip */
+.wallstrip { display: grid; gap: 14px; margin-top: 28px; }
+.marq { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.track { display: flex; gap: 14px; width: max-content; animation: marq 55s linear infinite; }
+.marq.rev .track { animation-direction: reverse; animation-duration: 65s; }
+.marq:hover .track { animation-play-state: paused; }
+@keyframes marq { to { transform: translateX(calc(-50% - 7px)); } }
+.chip { display: flex; align-items: center; gap: 14px; padding: 14px 22px 14px 14px; border-radius: 99px; background: #0f3b2c; border: 1px solid #2b6f59; text-decoration: none; color: inherit; flex: none; }
+.chip .av { width: 48px; height: 48px; color: #02221d; }
+.chip b { display: block; font: 800 1.05rem var(--display); letter-spacing: -.02em; color: #e6f3ec; white-space: nowrap; }
+.chip .role { white-space: nowrap; }
+.wallnote { color: #8fb0a0; font-size: .85rem; margin-top: 14px; }
+@media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; width: auto; } .track .chip[aria-hidden] { display: none; } }

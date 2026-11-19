@@ -47,16 +47,6 @@
     el.textContent = CONFIG.testOpen ? "Closed test is open: volunteers wanted" : "Closed test opens soon";
   });
 
-  // Seats: the real number of names on the wall (or the number you set in config.js), never invented.
-  const joined = Math.max(CONFIG.testersJoined || 0, TESTERS.length);
-  const meter = $("#meter");
-  if (meter) {
-    if (joined > 0) {
-      $("#meterText").textContent = joined + " of " + CONFIG.testersNeeded + " seats taken";
-      $("#meterBar").style.width = Math.min(100, Math.round((joined / CONFIG.testersNeeded) * 100)) + "%";
-    } else meter.hidden = true;
-  }
-
   // Share buttons.
   const pageUrl = (CONFIG.siteUrl || location.href).split("#")[0];
   const msg = "I'm helping test Pingo, an Android reminder app for water, medicine, meals and work. They need 12 volunteers for a 14-day test: ";
@@ -77,54 +67,56 @@
     }
   });
 
-  // Wall of Thanks: real names only. Open seats are shown as seats, not as fake people.
+  // Wall of Thanks: a slow moving strip of names and roles, no counts. Real testers from config.js replace the sample names.
   const wall = $("#wallgrid");
   if (wall) {
-    const total = Math.max(CONFIG.testersNeeded, TESTERS.length);
     const initials = (n) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
-    // Until real testers join, show clearly labelled examples so visitors can see what the wall will look like.
+    const PAL = [["#ffd93a", "#ff9f43"], ["#7be0b0", "#38b6a0"], ["#9ad0ff", "#6e9bff"], ["#f5a3c7", "#e46aa0"], ["#c3b1ff", "#8d7bff"], ["#ffb48a", "#ff7a59"]];
     const SAMPLES = [
-      { name: "Riya Sharma", role: "Student", org: "Example college", c: ["#ffd93a", "#ff9f43"] },
-      { name: "Karan Mehta", role: "Software engineer", org: "Example company", c: ["#7be0b0", "#38b6a0"] },
-      { name: "Sana Ali", role: "Nurse", org: "Example hospital", c: ["#9ad0ff", "#6e9bff"] },
+      { name: "Riya Sharma", role: "College Student" },
+      { name: "Karan Mehta", role: "IT Professional" },
+      { name: "Sana Ali", role: "Nurse" },
+      { name: "Arjun Nair", role: "Test Engineer" },
+      { name: "Priya Verma", role: "Software Developer" },
+      { name: "Rahul Singh", role: "Freelancer" },
+      { name: "Neha Kapoor", role: "Teacher" },
+      { name: "Vikram Joshi", role: "Business Analyst" },
+      { name: "Ananya Iyer", role: "Design Student" },
+      { name: "Imran Khan", role: "Delivery Manager" },
+      { name: "Meera Pillai", role: "Pharmacist" },
+      { name: "Rohit Das", role: "QA Lead" },
     ];
     const useSamples = TESTERS.length === 0;
-    for (let i = 0; i < total; i++) {
-      const t = TESTERS[i], li = document.createElement("li");
-      if (useSamples && SAMPLES[i]) {
-        const s = SAMPLES[i];
-        li.className = "seat sample";
-        li.style.setProperty("--c1", s.c[0]); li.style.setProperty("--c2", s.c[1]);
-        const av = document.createElement("span"); av.className = "av"; av.textContent = initials(s.name);
-        const box = document.createElement("div");
-        const nm = document.createElement("b"); nm.textContent = s.name;
-        const rl = document.createElement("span"); rl.className = "role"; rl.textContent = s.role + ", " + s.org;
-        const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = "Example entry";
-        box.append(nm, rl, tag); li.append(av, box);
-      } else if (t) {
-        li.className = "seat on";
-        const av = document.createElement("span"); av.className = "av"; av.textContent = initials(t.name);
-        const box = document.createElement("div");
-        const nm = document.createElement("b"); nm.textContent = t.name;
-        const rl = document.createElement("span"); rl.className = "role"; rl.textContent = [t.role, t.org].filter(Boolean).join(", ");
-        box.append(nm, rl);
-        const row = document.createElement("div"); row.className = "seatlinks";
-        if (t.link) { const a = document.createElement("a"); a.href = t.link; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Profile"; row.append(a); }
-        const c = document.createElement("a"); c.href = "certificate.html?id=" + encodeURIComponent(t.id); c.textContent = "Certificate"; row.append(c);
-        box.append(row); li.append(av, box);
-      } else {
-        li.className = "seat open";
-        li.innerHTML = '<span class="av">+</span><div><b>Seat open</b><span class="role">Your name and role could be here</span><div class="seatlinks"><a href="#join">Take this seat</a></div></div>';
-      }
-      wall.appendChild(li);
-    }
-    const wc = $("#wallcount");
-    if (wc) wc.textContent = TESTERS.length + " of " + total + " seats filled";
-    if (useSamples && wc) {
-      const note = document.createElement("p"); note.className = "wallnote";
-      note.textContent = "The first three seats show example entries. Real testers replace them as they join.";
-      wc.after(note);
-    }
+    const people = useSamples ? SAMPLES : TESTERS;
+    const chip = (t, i) => {
+      const el = t.link ? document.createElement("a") : document.createElement("div");
+      el.className = "chip";
+      if (t.link) { el.href = t.link; el.target = "_blank"; el.rel = "noopener"; }
+      const c = PAL[i % PAL.length];
+      const av = document.createElement("span"); av.className = "av"; av.textContent = initials(t.name);
+      av.style.background = "linear-gradient(135deg," + c[0] + "," + c[1] + ")";
+      const box = document.createElement("div");
+      const nm = document.createElement("b"); nm.textContent = t.name;
+      const rl = document.createElement("span"); rl.className = "role"; rl.textContent = [t.role, t.org].filter(Boolean).join(", ");
+      box.append(nm, rl); el.append(av, box);
+      return el;
+    };
+    // Build each row twice so the loop is seamless; a short list is repeated first so the strip never runs empty.
+    const row = (list, rev, i0) => {
+      let base = list.slice();
+      while (base.length < 8) base = base.concat(list);
+      const wrap = document.createElement("div"); wrap.className = "marq" + (rev ? " rev" : "");
+      const track = document.createElement("div"); track.className = "track";
+      [0, 1].forEach((k) => base.forEach((t, i) => { const c = chip(t, i + i0); if (k) c.setAttribute("aria-hidden", "true"); track.appendChild(c); }));
+      wrap.appendChild(track);
+      return wrap;
+    };
+    const half = Math.ceil(people.length / 2);
+    const a = people.slice(0, half), b = people.slice(half);
+    wall.append(row(a, false, 0));
+    if (b.length) wall.append(row(b, true, 3));
+    const note = $("#wallnote");
+    if (note) note.hidden = !useSamples;
   }
 
   // Mobile dock: a Join button that stays in reach, and steps aside while the Join section is on screen.
