@@ -515,3 +515,21 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
 .wallnote { color: #5f8574; font-size: .75rem; margin-top: 10px; }
 @media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; width: auto; } .track .chip[aria-hidden] { display: none; } }
 #wall { overflow-x: clip; }
+
+/* tighter gap after the wall */
+#wall { padding-bottom: clamp(8px, 2vw, 24px); }
+#plan { padding-top: clamp(40px, 6vw, 80px); }
+
+/* nav logo: a soft pulse, and the icon rings like a bell now and then */
+.nav .brand img { animation: logoRing 6s ease-in-out infinite, logoPulse 3s ease-out infinite; transform-origin: 50% 20%; transition: transform .25s; }
+.nav .brand:hover img { animation-play-state: paused; transform: scale(1.12) rotate(-6deg); }
+@keyframes logoRing {
+  0%, 62%, 100% { transform: rotate(0); }
+  66% { transform: rotate(16deg); } 70% { transform: rotate(-14deg); } 74% { transform: rotate(10deg); }
+  78% { transform: rotate(-8deg); } 82% { transform: rotate(4deg); } 86% { transform: rotate(0); }
+}
+@keyframes logoPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 217, 58, .55); }
+  70%, 100% { box-shadow: 0 0 0 12px rgba(255, 217, 58, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .nav .brand img { animation: none; } }
