@@ -24,7 +24,7 @@ const CONFIG = {
   // Digits only with country code, no plus sign, for example 919876543210. Empty hides the WhatsApp button.
   whatsappNumber: "",
   linkedinUrl: "https://www.linkedin.com/in/arundattkaushik",
-  facebookUrl: "https://www.facebook.com/profile.php?id=61584796410306",
+  facebookUrl: "",
   instagramUrl: "https://www.instagram.com/happylearninghq/",
   xUrl: "https://x.com/CodeNCoffe",
 
