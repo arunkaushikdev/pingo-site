@@ -20,7 +20,7 @@ const CONFIG = {
   // Where testers report bugs and ideas: a Google Form or a WhatsApp group invite.
   feedbackUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfgLP28_GL95z0B8EOAUnal7x_v35h6gtQnEAOq82mA5hxCmw/viewform",
 
-  contactEmail: "arun.idevs@gmail.com",
+  contactEmail: "",
   // Digits only with country code, no plus sign, for example 919876543210. Empty hides the WhatsApp button.
   whatsappNumber: "",
   linkedinUrl: "https://www.linkedin.com/in/arundattkaushik",
