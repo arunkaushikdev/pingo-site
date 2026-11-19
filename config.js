@@ -28,7 +28,7 @@ const CONFIG = {
   instagramUrl: "",
 
   // Visitor stats. Create a free account at goatcounter.com, choose a code, and put only the code here (for example "pingo").
-  goatcounterCode: "",
+  goatcounterCode: "pingo",
 
   // Shown on certificates. When the 14 days are done, set the real end date.
   testStart: "",
