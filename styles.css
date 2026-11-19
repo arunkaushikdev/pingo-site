@@ -514,3 +514,4 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
 .chip .role { white-space: nowrap; }
 .wallnote { color: #8fb0a0; font-size: .85rem; margin-top: 14px; }
 @media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; width: auto; } .track .chip[aria-hidden] { display: none; } }
+#wall { overflow-x: clip; }
