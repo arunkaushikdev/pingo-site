@@ -17,6 +17,7 @@ const CONFIG = {
 };
 
 (function () {
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
@@ -105,60 +106,81 @@ const CONFIG = {
     });
   }
 
-  // Stagger siblings so groups cascade in.
-  $$(".grid, .steps, .tests").forEach((g) => [...g.children].forEach((ch, i) => ch.style.setProperty("--d", i * 90 + "ms")));
 
-  // Sticky bar styling and scroll progress.
-  const nav = $("#navbar"), bar = $("#progress");
+  // Nav: blur when scrolled, dark text-on-night when over dark sections.
+  const nav = $("#nav");
+  const darkEls = $$(".day, .night, footer");
   const onScroll = () => {
-    const y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
-    if (nav) nav.classList.toggle("stuck", y > 20);
-    if (bar) bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0) + ")";
+    if (!nav) return;
+    nav.classList.toggle("stuck", scrollY > 20);
+    const probe = 32;
+    let dark = false;
+    const day = $("#day");
+    darkEls.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top <= probe && r.bottom >= probe) {
+        dark = el === day ? ["5", "6"].includes(day.dataset.stage) : true;
+      }
+    });
+    nav.classList.toggle("dark", dark);
   };
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // Phone leans toward the pointer (desktop only, skipped when the user prefers less motion).
-  const phone = $(".phone");
-  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (phone && !calm && matchMedia("(hover: hover)").matches) {
-    const hero = $(".hero");
-    hero.addEventListener("pointermove", (e) => {
-      const r = hero.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-      phone.style.transform = "perspective(900px) rotateY(" + x * 12 + "deg) rotateX(" + -y * 8 + "deg)";
+  // A day with Pingo: the step nearest the middle of the screen sets the stage.
+  const day = $("#day");
+  if (day) {
+    const steps = $$(".step", day), times = $$(".bigtime span", day), scrs = $$(".scr", day), rail = $$(".rail li", day);
+    let cur = 0;
+    const setStage = (i) => {
+      if (i === cur) return;
+      cur = i;
+      day.dataset.stage = i;
+      steps.forEach((s) => s.classList.toggle("act", s.dataset.i == i));
+      times.forEach((t) => t.classList.toggle("on", t.dataset.i == i));
+      rail.forEach((t) => t.classList.toggle("on", t.dataset.i == i));
+      scrs.forEach((s) => {
+        const on = s.dataset.s == i;
+        // remove then re-add so the screen's own animations replay each visit
+        if (on && !s.classList.contains("on")) { s.classList.remove("on"); void s.offsetWidth; }
+        s.classList.toggle("on", on);
+      });
+      onScroll();
+    };
+    steps[0] && steps[0].classList.add("act");
+    cur = 1;
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) setStage(+en.target.dataset.i); });
+      }, { rootMargin: "-45% 0px -45% 0px" });
+      steps.forEach((s) => io.observe(s));
+    }
+    rail.forEach((li) => {
+      li.addEventListener("click", (e) => {
+        e.preventDefault();
+        const t = $("#s" + li.dataset.i);
+        if (t) t.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "center" });
+      });
     });
-    hero.addEventListener("pointerleave", () => { phone.style.transform = ""; });
   }
 
-  // Drifting icons in the side margins of wide screens.
-  const sides = document.createElement("div");
-  sides.className = "sides";
-  sides.setAttribute("aria-hidden", "true");
-  const icons = ["🔔", "✅", "💧", "💊", "⏰", "🔥", "🍱", "📚", "🧾", "🎯"];
-  for (let n = 0; n < 16; n++) {
-    const el = document.createElement("i");
-    el.textContent = icons[n % icons.length];
-    const left = n % 2 === 0;
-    el.style[left ? "left" : "right"] = 1.5 + Math.random() * 6.5 + "vw";
-    el.style.fontSize = 22 + Math.random() * 22 + "px";
-    el.style.animationDuration = 22 + Math.random() * 16 + "s";
-    el.style.animationDelay = -Math.random() * 30 + "s";
-    el.style.setProperty("--sx", (left ? 1 : -1) * (10 + Math.random() * 26) + "px");
-    el.style.setProperty("--top", 6 + Math.random() * 88);
-    sides.appendChild(el);
-  }
-  document.body.appendChild(sides);
-
-  // Gentle reveal on scroll.
-  const items = $$(".reveal");
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-    }, { threshold: 0.12 });
-    items.forEach((el) => io.observe(el));
-  } else {
-    items.forEach((el) => el.classList.add("in"));
+  // 14-day dots light up one by one when they come into view.
+  const dots = $("#dots");
+  if (dots) {
+    for (let n = 1; n <= 14; n++) {
+      const d = document.createElement("span");
+      d.textContent = n;
+      if (n === 14) d.className = "last";
+      dots.appendChild(d);
+    }
+    const lightUp = () => {
+      const all = [...dots.children];
+      all.forEach((d, i) => setTimeout(() => d.classList.add("lit"), calm ? 0 : i * 110));
+    };
+    if ("IntersectionObserver" in window) {
+      const io2 = new IntersectionObserver((en) => { if (en[0].isIntersecting) { lightUp(); io2.disconnect(); } }, { threshold: 0.6 });
+      io2.observe(dots);
+    } else lightUp();
   }
 
   const y = $("#year");

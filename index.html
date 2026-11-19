@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pingo: reminders you actually act on. Join the closed test</title>
-  <meta name="description" content="Pingo is an offline Android reminder app for food, meds, water and work. Volunteer to be one of our first testers.">
-  <meta name="theme-color" content="#02221d">
+  <title>Pingo: a reminder you actually act on. Join the closed test</title>
+  <meta name="description" content="Pingo is an offline Android reminder app for water, medicine, meals and work. Volunteer to be one of the first twelve testers.">
+  <meta name="theme-color" content="#eef6e4">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta property="og:type" content="website">
@@ -14,194 +14,278 @@
   <!-- After the site is live, change this to the full https:// address of og.png so link previews show it. -->
   <meta property="og:image" content="assets/og.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/display-800.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="progress" id="progress" aria-hidden="true"></div>
 
-<header class="hero">
-  <div class="blob b1" aria-hidden="true"></div><div class="blob b2" aria-hidden="true"></div>
-  <nav class="navbar" id="navbar" aria-label="Main"><div class="wrap nav">
-      <a class="brand" href="#top"><img src="assets/icon-192.png" alt="" width="34" height="34">Pingo</a>
-      <div>
-        <a class="link" href="#features">What it does</a>
-        <a class="link" href="#join">How to join</a>
-        <a class="link" href="#faq">FAQ</a>
-        <a class="btn primary small" href="#join">Join</a>
-      </div>
-    </div></nav>
-    <div class="wrap">
-
-    <div class="hero-grid" id="top">
-      <div>
-        <span class="tag a1"><i class="dot"></i>Closed test · Android · Volunteers wanted</span>
-        <h1 class="a2">A reminder that gets you to <em>actually do it.</em></h1>
-        <p class="lead a3">Water, medicine, lunch, standup, that bill. Pingo rings, pops up over whatever you are doing, and works with no internet and no account. We need a few real people to try it before it goes public.</p>
-        <div class="cta-row a4">
-          <a class="btn primary shine" href="#join">Join the closed test</a>
-          <a class="btn ghost" href="#features">See what it does</a>
-        </div>
-        <p class="note a5">Free · about 5 minutes to set up · you can leave any time</p>
-      </div>
-
-      <div class="phone" aria-hidden="true">
-        <div class="screen">
-          <div class="clock">9:00<small>Thursday</small></div>
-          <div class="rings"><i></i><i></i><i></i></div>
-          <div class="popup">
-            <div class="bell">🔔</div>
-            <div class="pri">HIGH PRIORITY</div>
-            <div class="t">Take your tablet</div>
-            <div class="d">Due at 9:00 PM</div>
-            <div class="row"><span>Snooze 5 min</span><span>Snooze 15 min</span><span>Snooze 1 hr</span></div>
-            <div class="done">Taken</div>
-            <div class="dis">Skip this one</div>
-          </div>
-          <div class="ok"><div class="tick">✓</div><b>Taken</b><span>7 day streak</span></div>
-        </div>
-        <div class="float a"><span>💧</span><div><b>Drink water</b>Every 2 hours, 9 AM to 9 PM</div></div>
-        <div class="float b"><span>🔥</span><div><b>6 day streak</b>Medicine, on time</div></div>
-      </div>
-    </div>
+<header class="nav" id="nav">
+  <div class="wrap bar">
+    <a class="brand" href="#top"><img src="assets/icon-192.png" alt="" width="32" height="32">Pingo</a>
+    <nav aria-label="Main">
+      <a href="#day">A day with Pingo</a>
+      <a href="#details">Details</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn mini" href="#join">Join the test</a>
+    </nav>
   </div>
 </header>
 
 <main>
-<section id="why">
-  <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Why Pingo</span>
-      <h2>You are busy. Your phone should do the remembering.</h2>
-      <p class="lead">Students and people who work at a screen all day skip the small things first. A notification you can swipe away does not fix that, so Pingo is built to be hard to miss and easy to answer.</p>
-      <div class="marquee" aria-hidden="true"><div class="track"><span>🍱 Forgot lunch again</span><span>💊 Missed the tablet</span><span>💧 One glass of water all day</span>
-        <span>📚 Study block slipped</span><span>🧾 Bill went overdue</span><span>🧑‍💻 Standup in 2 minutes</span><span>🍱 Forgot lunch again</span><span>💊 Missed the tablet</span><span>💧 One glass of water all day</span>
-        <span>📚 Study block slipped</span><span>🧾 Bill went overdue</span><span>🧑‍💻 Standup in 2 minutes</span></div></div>
-      <p class="sr">Forgot lunch, missed the tablet, one glass of water all day, study block slipped, bill went overdue, standup in 2 minutes.</p>
+<!-- HERO ------------------------------------------------------------>
+<section class="hero" id="top">
+  <div class="ghost" aria-hidden="true">7:00</div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="pill"><i></i>Volunteer testers wanted for the Android app</p>
+      <h1>A reminder you actually act on.</h1>
+      <p class="lead">Pingo rings, pops up over whatever you are doing, and asks one thing: done, snooze or skip. It works offline, with no account.</p>
+      <div class="cta">
+        <a class="btn primary" href="#join">Join the closed test</a>
+        <a class="btn quiet" href="#day">See a day with Pingo</a>
+      </div>
+      <p class="fine">Free. Android 7 or newer. About five minutes to set up, and you can leave any time.</p>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone" aria-hidden="true">
+        <div class="glass">
+          <div class="sb"><span>7:00</span><span class="bat"></span></div>
+          <div class="lock">
+            <div class="lt">7:00</div>
+            <div class="ld">Thursday, 19 November</div>
+          </div>
+          <div class="notes">
+            <div class="note n1"><b class="app">P</b><div><strong>Drink water</strong><span>Every 2 hours, 9 AM to 9 PM</span></div><em>now</em></div>
+            <div class="note n2"><b class="app">P</b><div><strong>Take your tablet</strong><span>High priority, due 9:00 AM</span></div><em>now</em></div>
+            <div class="note n3"><b class="app">P</b><div><strong>Standup at 10:30</strong><span>Daily, 15 minutes before</span></div><em>now</em></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="features" class="alt">
-  <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">What it does</span>
-      <h2>Built around how people really forget</h2>
+<!-- A DAY WITH PINGO ------------------------------------------------>
+<section class="day" id="day" data-stage="1">
+  <h2 class="sr">A day with Pingo</h2>
+  <div class="layer" aria-hidden="true">
+    <div class="bigtime">
+      <span class="on" data-i="1">7:30</span><span data-i="2">9:00</span><span data-i="3">1:00</span>
+      <span data-i="4">3:30</span><span data-i="5">6:30</span><span data-i="6">10:30</span>
     </div>
-    <div class="grid g3">
-      <article class="card reveal"><div class="ico">🔔</div><h3>Alerts you can feel</h3><p>Low, medium or high priority. High rings and keeps nagging until you answer. Choose ring, vibration and sound for each task.</p></article>
-      <article class="card reveal"><div class="ico">🪟</div><h3>Pops up over anything</h3><p>The reminder appears over your other apps and on the lock screen, with Snooze, Done and Skip right there.</p></article>
-      <article class="card reveal"><div class="ico">⏱️</div><h3>Every few hours</h3><p>"Water every 2 hours between 9 and 9" or fixed times like 9 AM and 9 PM for medicine. One task, many reminders.</p></article>
-      <article class="card reveal"><div class="ico">🎤</div><h3>Say it, done</h3><p>Tap the mic and say "kal shaam 6 baje dawai" or "urgent submit report in 30 minutes". English and Hinglish both work.</p></article>
-      <article class="card reveal"><div class="ico">🔥</div><h3>Streaks and progress</h3><p>Tap Taken or +1 glass from the notification and watch your streak grow for water, medicine and meals.</p></article>
-      <article class="card reveal"><div class="ico">🎯</div><h3>Focus and quiet hours</h3><p>Pomodoro and Focus mode silence reminders for a while. Quiet hours do it every night, and high priority can still get through.</p></article>
-      <article class="card reveal"><div class="ico">⏰</div><h3>Several heads-ups</h3><p>Remind me a day before, an hour before, and again at the time. Templates start you off in one tap.</p></article>
-      <article class="card reveal"><div class="ico">🏠</div><h3>Widget</h3><p>See what is next on your home screen, and add a reminder with one tap.</p></article>
-      <article class="card reveal"><div class="ico">🔒</div><h3>Offline and private</h3><p>No account, no sign-up, works without internet. Your reminders stay on your phone, and you can back them up to a file.</p></article>
+
+    <div class="phone-wrap stagephone">
+      <div class="phone">
+        <div class="glass">
+          <div class="sb"><span class="clk">7:30</span><span class="bat"></span></div>
+
+          <!-- 1 water -->
+          <div class="scr on" data-s="1">
+            <div class="lock"><div class="lt">7:30</div><div class="ld">Thursday</div></div>
+            <div class="notes">
+              <div class="note"><b class="app">P</b><div><strong>Drink water</strong><span>Every 2 hours, 9 AM to 9 PM</span></div><em>now</em>
+                <div class="acts"><u>Snooze 10 min</u><u class="hot">+1 glass</u></div></div>
+            </div>
+            <div class="count"><span>Glasses today</span><div class="cups"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="g"></i><i></i><i></i></div><b>5 of 8</b></div>
+          </div>
+
+          <!-- 2 medicine -->
+          <div class="scr" data-s="2">
+            <div class="dim"></div>
+            <div class="popup">
+              <small class="hi">High priority</small>
+              <h4>Take your tablet</h4>
+              <p>Due at 9:00 AM</p>
+              <div class="row3"><u>Snooze 5 min</u><u>Snooze 15 min</u><u>Snooze 1 hr</u></div>
+              <div class="cta2">Taken</div>
+              <p class="skip">Skip this one</p>
+            </div>
+            <div class="streak"><span>🔥</span><b>7 day streak</b></div>
+          </div>
+
+          <!-- 3 voice -->
+          <div class="scr" data-s="3">
+            <div class="vh">Add by voice</div>
+            <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="said"><span>kal ek baje lunch</span></p>
+            <div class="filled">
+              <small>Filled in for you</small>
+              <div class="frow"><b>Lunch</b><span class="chip">Medium</span></div>
+              <div class="frow dim2"><span>Tomorrow, 1:00 PM</span><span>Repeat: never</span></div>
+              <div class="save">Save</div>
+            </div>
+          </div>
+
+          <!-- 4 focus -->
+          <div class="scr" data-s="4">
+            <div class="vh">Focus</div>
+            <div class="ring">
+              <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="tr"/><circle cx="60" cy="60" r="52" class="pr"/></svg>
+              <div class="rt"><b>24:12</b><span>Pomodoro</span></div>
+            </div>
+            <div class="quiet"><span>🔕</span><div><strong>3 reminders held</strong><span>They vibrate only until the break</span></div></div>
+            <div class="quiet hi2"><span>🔔</span><div><strong>High priority still rings</strong><span>If you allow it in quiet hours</span></div></div>
+          </div>
+
+          <!-- 5 progress -->
+          <div class="scr" data-s="5">
+            <div class="vh">Progress</div>
+            <div class="big7"><b>7</b><span>day streak</span></div>
+            <div class="bars"><i style="--h:55%"></i><i style="--h:80%"></i><i style="--h:70%"></i><i style="--h:100%"></i><i style="--h:90%"></i><i style="--h:100%"></i><i style="--h:60%" class="today"></i></div>
+            <div class="days"><span>F</span><span>S</span><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span></div>
+            <div class="goal"><span>Water</span><b>6 of 8</b></div>
+          </div>
+
+          <!-- 6 night -->
+          <div class="scr night" data-s="6">
+            <div class="moon">☾</div>
+            <div class="qh"><span>Quiet hours</span><b>10 PM to 7 AM</b></div>
+            <div class="widget">
+              <small>Up next</small>
+              <div><span>7:30 AM</span> Drink water</div>
+              <div><span>9:00 AM</span> Take tablet</div>
+              <div><span>10:30 AM</span> Standup</div>
+            </div>
+            <div class="file"><span>📄</span><div><strong>pingo-backup.json</strong><span>Saved to your phone</span></div><i>✓</i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ol class="rail">
+      <li class="on" data-i="1"><a href="#s1" tabindex="-1">7:30</a></li>
+      <li data-i="2"><a href="#s2" tabindex="-1">9:00</a></li>
+      <li data-i="3"><a href="#s3" tabindex="-1">1:00</a></li>
+      <li data-i="4"><a href="#s4" tabindex="-1">3:30</a></li>
+      <li data-i="5"><a href="#s5" tabindex="-1">6:30</a></li>
+      <li data-i="6"><a href="#s6" tabindex="-1">10:30</a></li>
+    </ol>
+  </div>
+
+  <div class="wrap steps">
+    <article class="step" id="s1" data-i="1"><div class="t"><time>7:30 AM</time><h3>Water, every two hours.</h3>
+      <p>Pick the hours, say 9 to 9, and Pingo reminds you inside them. Tap +1 glass on the notification and it keeps count for you.</p></div></article>
+    <article class="step" id="s2" data-i="2"><div class="t"><time>9:00 AM</time><h3>Medicine at the times you choose.</h3>
+      <p>High priority reminders pop up over any app and on the lock screen, and keep asking until you answer. Taken, snooze or skip, right there.</p></div></article>
+    <article class="step" id="s3" data-i="3"><div class="t"><time>1:00 PM</time><h3>Say it instead of typing.</h3>
+      <p>Tap the mic and say “kal ek baje lunch” or “urgent submit report in 30 minutes”. Pingo understands English and Hinglish and fills the form in for you.</p></div></article>
+    <article class="step" id="s4" data-i="4"><div class="t"><time>3:30 PM</time><h3>Focus without missing what matters.</h3>
+      <p>Start a Pomodoro and other reminders only vibrate. High priority can still get through if you allow it, and a break reminder arrives when time is up.</p></div></article>
+    <article class="step" id="s5" data-i="5"><div class="t"><time>6:30 PM</time><h3>See how you are doing.</h3>
+      <p>Streaks for water, medicine and meals, and a week at a glance, so a missed day is easy to spot and easy to fix.</p></div></article>
+    <article class="step" id="s6" data-i="6"><div class="t"><time>10:30 PM</time><h3>Quiet at night, safe on your phone.</h3>
+      <p>Quiet hours turn the sound off while you sleep. Everything stays on your phone, works without internet, and can be backed up to a file you keep.</p></div></article>
+  </div>
+</section>
+
+<!-- DETAILS (bento) ------------------------------------------------->
+<section class="night sec" id="details">
+  <div class="wrap">
+    <h2>The details people ask about</h2>
+    <div class="bento">
+      <article class="tile t-many">
+        <h3>One task, several heads-ups</h3>
+        <p>Add up to three reminders before the due time, then one more at the time itself.</p>
+        <ol class="points"><li><span>Mon, 9:00 AM</span>1 day before</li><li><span>Tue, 8:00 AM</span>1 hour before</li><li class="now"><span>Tue, 9:00 AM</span>Due now</li></ol>
+      </article>
+      <article class="tile t-tmpl">
+        <h3>Start from a template</h3>
+        <p>One tap fills in the form. Nothing is saved until you press Save.</p>
+        <div class="chips"><span>💧 Drink water</span><span>🍱 Lunch</span><span>💊 Medicine</span><span>📚 Study</span><span>🧑‍💻 Standup</span><span>🧾 Pay a bill</span><span>🌙 Wind down</span></div>
+      </article>
+      <article class="tile t-pri">
+        <h3>Three priorities</h3>
+        <p>Choose how hard a reminder tries. Ring, vibration and sound are set per task.</p>
+        <div class="levels"><div><i class="l1"></i><b>Low</b><span>Quiet nudge</span></div><div><i class="l2"></i><b>Medium</b><span>Sound and popup</span></div><div><i class="l3"></i><b>High</b><span>Repeats until you answer</span></div></div>
+      </article>
+      <article class="tile t-off">
+        <p class="num">0</p>
+        <h3>accounts, sign-ups or servers</h3>
+        <p>Pingo works without internet. Your reminders stay on your phone.</p>
+      </article>
+      <article class="tile t-wid">
+        <h3>Home screen widget</h3>
+        <p>See what is next and add a reminder with one tap.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section id="join">
-  <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Become a tester</span>
-      <h2>Three steps, then just use it</h2>
-      <p class="lead">Google asks every new app to be tested by at least 12 real people, who stay signed up for 14 days in a row, before it can go public. That is where you come in.</p>
-      <div id="meter">
-        <b id="meterText"></b>
-        <div class="meter"><i id="meterBar"></i></div>
-      </div>
+<!-- JOIN ------------------------------------------------------------>
+<section class="night sec join" id="join">
+  <div class="wrap join-grid">
+    <div>
+      <h2>Help us test it for 14 days</h2>
+      <p class="lead">Google asks every new app to be tested by at least 12 real people, who stay signed up for 14 days in a row, before it can go public.</p>
+      <div id="meter" class="meterbox"><b id="meterText"></b><div class="meter"><i id="meterBar"></i></div></div>
+
+      <ol class="stepper">
+        <li><div><h3>Tell us your Gmail</h3><p>Play only lets people on the tester list install the test version, and it knows you by your Google account. Send the Gmail you use on your phone.</p>
+          <a class="btn primary" data-link="signup">Add me as a tester</a></div></li>
+        <li><div><h3>Accept the invite</h3><p>When we add you, open the test link on your Android phone, tap Become a tester, and install Pingo from Play. It is a normal Play Store install.</p>
+          <a class="btn quiet dk" data-link="optin">Open the test link</a></div></li>
+        <li><div><h3>Use it for 14 days</h3><p>Add the reminders you really need and let it run. Staying signed up for the full 14 days is what counts.</p>
+          <a class="btn quiet dk" data-link="feedback">Send feedback</a></div></li>
+      </ol>
     </div>
 
-    <div class="steps">
-      <div class="step reveal">
-        <h3>Tell us your Gmail</h3>
-        <p>Google Play only lets people on the tester list install the test version, and it identifies you by your Google account. Send us the Gmail you use on your phone's Play Store.</p>
-        <a class="btn green" data-link="signup">Add me as a tester</a>
-      </div>
-      <div class="step reveal">
-        <h3>Accept the invite</h3>
-        <p>Once we add you, open the test link on your Android phone, tap "Become a tester", then install Pingo from Play. It is a normal Play Store install.</p>
-        <a class="btn outline" data-link="optin">Open the test link</a>
-      </div>
-      <div class="step reveal">
-        <h3>Use it for 14 days</h3>
-        <p>Add the reminders you really need and let it run. Staying in the test for the full 14 days is what counts, so please do not leave early.</p>
-        <a class="btn outline" data-link="feedback">Send feedback</a>
-      </div>
-    </div>
-
-    <div class="callout reveal">
-      <span aria-hidden="true">⚠️</span>
-      <div><b>Please do not uninstall or leave the test before 14 days.</b>
-      If you leave early, the count restarts for everyone. Not sure you can commit? Better to say no now than to drop out later, and no hard feelings.</div>
-    </div>
-
-    <p style="margin-top:22px"><a class="btn outline" id="share">Share with a friend</a></p>
+    <aside class="fourteen" aria-label="14 day plan">
+      <h3>Please stay for all 14 days</h3>
+      <div class="dots" id="dots"></div>
+      <p>If someone leaves early, the count restarts for everyone. Not sure you can stay? It is fine to say no now.</p>
+      <a class="btn quiet dk" id="share">Share with a friend</a>
+    </aside>
   </div>
 </section>
 
-<section id="plan" class="alt">
+<!-- TEST PLAN ------------------------------------------------------->
+<section class="night sec" id="plan">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Your 5 minute test plan</span>
-      <h2>If you only do six things</h2>
-      <p class="lead">Real use matters more than this list, but these cover the parts most likely to break on different phones. Ticks are saved on your device only.</p>
-    </div>
+    <h2>Six things worth trying</h2>
+    <p class="lead">Real use matters more than this list, but these cover what is most likely to behave differently on different phones. Ticks are saved on your device only.</p>
     <p class="tprog" id="tprog" aria-live="polite"></p>
     <div class="tests">
-      <label class="reveal"><input type="checkbox" id="t1"><div><b>Make a reminder ring while the phone is locked</b><span>Add a High priority reminder for 2 minutes from now, lock the phone, and see if the popup and sound arrive.</span></div></label>
-      <label class="reveal"><input type="checkbox" id="t2"><div><b>Add one by voice</b><span>Tap the mic and say "drink water every 2 hours". Check the form fills in correctly.</span></div></label>
-      <label class="reveal"><input type="checkbox" id="t3"><div><b>Medicine at two times a day</b><span>Use the medicine template, tap Taken on the notification, then open Progress to see your streak.</span></div></label>
-      <label class="reveal"><input type="checkbox" id="t4"><div><b>Try Focus mode</b><span>Start a Pomodoro from Home, then see that other reminders only vibrate.</span></div></label>
-      <label class="reveal"><input type="checkbox" id="t5"><div><b>Back up and restore</b><span>Settings, Back up to a file. Delete a reminder, then restore and check it returns.</span></div></label>
-      <label class="reveal"><input type="checkbox" id="t6"><div><b>Add the home screen widget</b><span>Long-press your home screen, add Pingo, and check it shows your next reminders.</span></div></label>
+      <label><input type="checkbox" id="t1"><div><b>Ring on the lock screen</b><span>Add a High priority reminder for 2 minutes from now, lock the phone, and see if the popup and sound arrive.</span></div></label>
+      <label><input type="checkbox" id="t2"><div><b>Add one by voice</b><span>Tap the mic and say “drink water every 2 hours”. Check the form fills in correctly.</span></div></label>
+      <label><input type="checkbox" id="t3"><div><b>Medicine twice a day</b><span>Use the medicine template, tap Taken on the notification, then open Progress to see the streak.</span></div></label>
+      <label><input type="checkbox" id="t4"><div><b>Try Focus mode</b><span>Start a Pomodoro from Home and check that other reminders only vibrate.</span></div></label>
+      <label><input type="checkbox" id="t5"><div><b>Back up and restore</b><span>In Settings, back up to a file. Delete a reminder, then restore and check it returns.</span></div></label>
+      <label><input type="checkbox" id="t6"><div><b>Add the widget</b><span>Long-press your home screen, add Pingo, and check it shows your next reminders.</span></div></label>
     </div>
-    <div class="callout reveal">
-      <span aria-hidden="true">💬</span>
-      <div><b>When something is wrong, tell us three things</b>
-      Your phone model, your Android version, and what you expected versus what happened. A screenshot helps a lot.</div>
-    </div>
+    <p class="hint">When something is wrong, tell us your phone model, your Android version, and what you expected against what happened. A screenshot helps a lot.</p>
   </div>
 </section>
 
-<section id="phones">
-  <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Good to know</span>
-      <h2>Some phones hide reminders to save battery</h2>
-      <p class="lead">Xiaomi, Redmi, Poco, Oppo, Vivo, Realme and Huawei phones can block pop-ups and late reminders unless you allow a few settings. Pingo has a Permission check in Settings that walks you through them. If a reminder is late or missing, that is the first place to look, and we want to hear about it either way.</p>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="alt">
-  <div class="wrap">
-    <div class="head reveal"><span class="eyebrow">Questions</span><h2>FAQ</h2></div>
-    <div class="reveal">
+<!-- FAQ ------------------------------------------------------------->
+<section class="night sec" id="faq">
+  <div class="wrap faq-grid">
+    <h2>Questions</h2>
+    <div>
       <details><summary>Is it free?</summary><p>Yes. The test is free and nothing is charged. Ads and paid features are not part of this test.</p></details>
       <details><summary>What do I need?</summary><p>An Android phone with Android 7.0 or newer, the Google Play Store, and a Gmail or Google account. iPhone is not supported yet.</p></details>
       <details><summary>Why do you need my Gmail?</summary><p>Play lets only the Google accounts on the tester list join a closed test. We use the address only to add you to that list and to contact you about the test.</p></details>
-      <details><summary>How much time will it take?</summary><p>Five minutes to set up, then use it as a normal reminder app. We would love a short note when something is confusing or broken, but there are no required reports.</p></details>
+      <details><summary>Why do some phones need extra settings?</summary><p>Xiaomi, Redmi, Poco, Oppo, Vivo, Realme and Huawei phones can block pop-ups and late reminders to save battery. Pingo has a Permission check in Settings that walks you through them. If a reminder is late or missing, tell us, because that is exactly what we are testing.</p></details>
       <details><summary>What happens to my reminders?</summary><p>They stay on your phone. Pingo has no account and works offline. You can export a backup file yourself whenever you like. See the <a href="privacy.html">privacy page</a>.</p></details>
       <details><summary>Can I leave the test?</summary><p>Yes, any time. We only ask that you stay for the full 14 days if you can, because the count restarts for everyone when someone leaves early.</p></details>
     </div>
   </div>
 </section>
 
-<section class="final">
+<!-- SUNRISE CTA ----------------------------------------------------->
+<section class="sunrise">
   <div class="wrap">
-    <h2 class="reveal">Help us make reminders that work</h2>
-    <p class="lead reveal">Twelve volunteers, two weeks, a few minutes. Thank you for being one of the first.</p>
-    <div class="cta-row reveal"><a class="btn primary" data-link="signup">Add me as a tester</a></div>
+    <h2>Be one of the first twelve.</h2>
+    <p class="lead">Two weeks, a few minutes a day. Thank you for helping us make reminders that work.</p>
+    <a class="btn primary dark" data-link="signup">Add me as a tester</a>
   </div>
 </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© <span id="year"></span> Pingo · Made by Arun Kaushik</span>
-    <span><a href="privacy.html">Privacy</a> · <a data-email href="#"></a></span>
+    <span>© <span id="year"></span> Pingo, made by Arun Kaushik</span>
+    <span><a href="privacy.html">Privacy</a> <a data-email href="#"></a></span>
   </div>
 </footer>
 
