@@ -12,7 +12,7 @@ const CONFIG = {
   testersJoined: 0,
 
   // STEP 1. A Google Group's join page. Add the group's email as the tester list in Play Console and everyone who joins gets access with no manual adding.
-  groupUrl: "",
+  groupUrl: "https://groups.google.com/g/pingo-closed-testers",
   // STEP 2. A Google Form asking: name, role (student or professional), organisation or college, LinkedIn (optional), and a tick-box "You may show my name on the Wall of Thanks".
   formUrl: "",
   // STEP 3. The "Join on the web" link from Play Console, Testing, Closed testing, Testers. Exists once your closed test is live.
