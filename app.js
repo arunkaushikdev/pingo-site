@@ -107,6 +107,25 @@ const CONFIG = {
   }
 
 
+
+  // Hero phone: endless loop through four scenes. Nothing shakes; each scene replays its own entrance.
+  const glass = $("#hglass");
+  if (glass && !calm) {
+    const scenes = $$(".hs", glass), clock = $("#hclock");
+    const lens = [5800, 7400, 6200, 7000], times = ["7:00", "7:01", "9:00", "9:02"];
+    let k = 0;
+    const show = (n) => {
+      scenes.forEach((s, i) => {
+        if (i === n) { s.classList.remove("on"); void s.offsetWidth; s.classList.add("on"); }
+        else s.classList.remove("on");
+      });
+      glass.classList.toggle("light", n > 0);
+      clock.textContent = times[n];
+    };
+    const tick = () => { show(k); const d = lens[k]; k = (k + 1) % scenes.length; setTimeout(tick, d); };
+    tick();
+  }
+
   // Nav: blur when scrolled, dark text-on-night when over dark sections.
   const nav = $("#nav");
   const darkEls = $$(".day, .night, footer");

@@ -49,16 +49,46 @@
 
     <div class="phone-wrap">
       <div class="phone" aria-hidden="true">
-        <div class="glass">
-          <div class="sb"><span>7:00</span><span class="bat"></span></div>
-          <div class="lock">
-            <div class="lt">7:00</div>
-            <div class="ld">Thursday, 19 November</div>
+        <div class="glass" id="hglass">
+          <div class="sb"><span id="hclock">7:00</span><span class="bat"></span></div>
+
+          <div class="hs on" data-h="1">
+            <div class="lock"><div class="lt">7:00</div><div class="ld">Thursday, 19 November</div></div>
+            <div class="notes">
+              <div class="note n1"><b class="app">P</b><div><strong>Drink water</strong><span>Every 2 hours, 9 AM to 9 PM</span></div><em>now</em></div>
+              <div class="note n2"><b class="app">P</b><div><strong>Take your tablet</strong><span>High priority, due 9:00 AM</span></div><em>now</em></div>
+              <div class="note n3"><b class="app">P</b><div><strong>Standup at 10:30</strong><span>Daily, 15 minutes before</span></div><em>now</em></div>
+            </div>
+            <div class="swipe">Swipe up to open</div>
           </div>
-          <div class="notes">
-            <div class="note n1"><b class="app">P</b><div><strong>Drink water</strong><span>Every 2 hours, 9 AM to 9 PM</span></div><em>now</em></div>
-            <div class="note n2"><b class="app">P</b><div><strong>Take your tablet</strong><span>High priority, due 9:00 AM</span></div><em>now</em></div>
-            <div class="note n3"><b class="app">P</b><div><strong>Standup at 10:30</strong><span>Daily, 15 minutes before</span></div><em>now</em></div>
+
+          <div class="hs light" data-h="2">
+            <div class="hh">Today</div>
+            <div class="trow"><i class="ck done"></i><div><b>Drink water</b><span>9:00 AM · every 2 hours</span></div></div>
+            <div class="trow"><i class="ck"></i><div><b>Take your tablet</b><span>9:00 AM · High</span></div></div>
+            <div class="trow new r1"><i class="ck"></i><div><b>Gym session</b><span>6:00 PM · Medium</span></div></div>
+            <div class="trow new r2"><i class="ck"></i><div><b>Call mom</b><span>Tomorrow, 8:00 PM</span></div></div>
+            <div class="heard">“gym at 6 pm”</div>
+            <div class="mic"><span></span>🎤</div>
+          </div>
+
+          <div class="hs light" data-h="3">
+            <div class="hh">Today</div>
+            <div class="trow"><i class="ck"></i><div><b>Take your tablet</b><span>9:00 AM · High</span></div></div>
+            <div class="dim"></div>
+            <div class="popup"><div class="hi">High priority</div><h4>Take your tablet</h4><p>Due at 9:00 AM</p>
+              <div class="row3"><u>Snooze 5 min</u><u>Snooze 15 min</u><u>Snooze 1 hr</u></div>
+              <div class="cta2">Taken</div></div>
+            <div class="streak"><span>🔥</span><b>7 day streak</b></div>
+          </div>
+
+          <div class="hs light" data-h="4">
+            <div class="hh">Water</div>
+            <div class="wcard"><small>Glasses today</small>
+              <div class="cups"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="g g1"></i><i class="g g2"></i><i class="g g3"></i><i class="g"></i></div>
+              <b class="wn"><span class="a">4 of 8</span><span class="b">7 of 8</span></b></div>
+            <div class="trow ft"><i class="ck"></i><div><b>Focus: 25 min</b><span>Other reminders only vibrate</span></div></div>
+            <div class="ring2"><svg viewBox="0 0 120 120"><circle class="tr" cx="60" cy="60" r="52"/><circle class="pr" cx="60" cy="60" r="52"/></svg><b>24:59</b></div>
           </div>
         </div>
       </div>
@@ -284,8 +314,8 @@
 
 <footer>
   <div class="wrap">
-    <span>© <span id="year"></span> Pingo, made by Arun Kaushik</span>
-    <span><a href="privacy.html">Privacy</a> <a data-email href="#"></a></span>
+    <span>© <span id="year"></span> Pingo, made by Arun Datt Kaushik</span>
+    <span><a href="privacy.html">Privacy</a> <a href="terms.html">Terms</a> <a data-email href="#"></a></span>
   </div>
 </footer>
 
