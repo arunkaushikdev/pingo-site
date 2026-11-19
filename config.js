@@ -24,8 +24,8 @@ const CONFIG = {
   // Digits only with country code, no plus sign, for example 919876543210. Empty hides the WhatsApp button.
   whatsappNumber: "",
   linkedinUrl: "",
-  facebookUrl: "",
-  instagramUrl: "",
+  facebookUrl: "https://www.facebook.com/profile.php?id=61584796410306",
+  instagramUrl: "https://www.instagram.com/happylearninghq/",
 
 
   // Shown on certificates. When the 14 days are done, set the real end date.
