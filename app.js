@@ -35,7 +35,7 @@
     el.href = "https://wa.me/" + CONFIG.whatsappNumber + "?text=" + encodeURIComponent("Hi Arun, I would like to join the Pingo closed test.");
     el.target = "_blank"; el.rel = "noopener";
   });
-  const socials = { linkedin: CONFIG.linkedinUrl, facebook: CONFIG.facebookUrl, instagram: CONFIG.instagramUrl };
+  const socials = { linkedin: CONFIG.linkedinUrl, facebook: CONFIG.facebookUrl, x: CONFIG.xUrl, instagram: CONFIG.instagramUrl };
   $$("[data-social]").forEach((el) => {
     const u = socials[el.dataset.social];
     if (u) { el.href = u; el.target = "_blank"; el.rel = "noopener"; } else el.remove();

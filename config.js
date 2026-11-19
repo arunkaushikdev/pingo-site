@@ -26,6 +26,7 @@ const CONFIG = {
   linkedinUrl: "",
   facebookUrl: "https://www.facebook.com/profile.php?id=61584796410306",
   instagramUrl: "https://www.instagram.com/happylearninghq/",
+  xUrl: "https://x.com/CodeNCoffe",
 
 
   // Shown on certificates. When the 14 days are done, set the real end date.
