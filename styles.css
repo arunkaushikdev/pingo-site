@@ -18,7 +18,7 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { color: var(--primary); }
-.wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
+.wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
 h1, h2, h3 { line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
 h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
 p { margin: 0; }
@@ -274,3 +274,20 @@ body::before { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-e
 @keyframes aurora { 0% { transform: translate(0, 0) rotate(0deg) scale(1); } 50% { transform: translate(6%, -4%) rotate(8deg) scale(1.12); } 100% { transform: translate(-6%, 5%) rotate(-6deg) scale(1.05); } }
 @keyframes flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 @media (prefers-reduced-motion: reduce) { .hero, .final, body::before { animation: none !important; } }
+
+/* On wide screens the side margins carry slow drifting icons and a faint dotted edge. */
+.sides { display: none; position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.sides i { position: absolute; bottom: -60px; font-style: normal; opacity: 0; animation: upward linear infinite; filter: drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+@keyframes upward {
+  0% { transform: translate(0, 0) rotate(-8deg); opacity: 0; }
+  10% { opacity: .5; }
+  50% { transform: translate(var(--sx, 18px), -55vh) rotate(8deg); }
+  90% { opacity: .5; }
+  100% { transform: translate(calc(var(--sx, 18px) * -1), -118vh) rotate(-8deg); opacity: 0; }
+}
+.sides::before, .sides::after { content: ""; position: absolute; top: 0; bottom: 0; width: calc((100vw - 1120px) / 2 - 20px);
+  background-image: radial-gradient(circle, rgba(21,127,66,.22) 1.2px, transparent 1.6px); background-size: 26px 26px; }
+.sides::before { left: 0; -webkit-mask-image: linear-gradient(90deg, #000, transparent); mask-image: linear-gradient(90deg, #000, transparent); }
+.sides::after { right: 0; -webkit-mask-image: linear-gradient(270deg, #000, transparent); mask-image: linear-gradient(270deg, #000, transparent); }
+@media (min-width: 1400px) { .sides { display: block; } }
+@media (prefers-reduced-motion: reduce) { .sides i { animation: none; opacity: .35; bottom: auto; top: calc(var(--top, 50) * 1%); } }

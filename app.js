@@ -131,6 +131,25 @@ const CONFIG = {
     hero.addEventListener("pointerleave", () => { phone.style.transform = ""; });
   }
 
+  // Drifting icons in the side margins of wide screens.
+  const sides = document.createElement("div");
+  sides.className = "sides";
+  sides.setAttribute("aria-hidden", "true");
+  const icons = ["🔔", "✅", "💧", "💊", "⏰", "🔥", "🍱", "📚", "🧾", "🎯"];
+  for (let n = 0; n < 16; n++) {
+    const el = document.createElement("i");
+    el.textContent = icons[n % icons.length];
+    const left = n % 2 === 0;
+    el.style[left ? "left" : "right"] = 1.5 + Math.random() * 6.5 + "vw";
+    el.style.fontSize = 22 + Math.random() * 22 + "px";
+    el.style.animationDuration = 22 + Math.random() * 16 + "s";
+    el.style.animationDelay = -Math.random() * 30 + "s";
+    el.style.setProperty("--sx", (left ? 1 : -1) * (10 + Math.random() * 26) + "px");
+    el.style.setProperty("--top", 6 + Math.random() * 88);
+    sides.appendChild(el);
+  }
+  document.body.appendChild(sides);
+
   // Gentle reveal on scroll.
   const items = $$(".reveal");
   if ("IntersectionObserver" in window) {
