@@ -75,16 +75,8 @@
     const SAMPLES = [
       { name: "Riya Sharma", role: "College Student" },
       { name: "Karan Mehta", role: "IT Professional" },
-      { name: "Sana Ali", role: "Nurse" },
-      { name: "Arjun Nair", role: "Test Engineer" },
-      { name: "Priya Verma", role: "Software Developer" },
-      { name: "Rahul Singh", role: "Freelancer" },
-      { name: "Neha Kapoor", role: "Teacher" },
-      { name: "Vikram Joshi", role: "Business Analyst" },
-      { name: "Ananya Iyer", role: "Design Student" },
-      { name: "Imran Khan", role: "Delivery Manager" },
-      { name: "Meera Pillai", role: "Pharmacist" },
-      { name: "Rohit Das", role: "QA Lead" },
+      { name: "Arjun Nair", role: "Engineering Student" },
+      { name: "Priya Verma", role: "Software Engineer" },
     ];
     const useSamples = TESTERS.length === 0;
     const people = useSamples ? SAMPLES : TESTERS;
@@ -111,10 +103,7 @@
       wrap.appendChild(track);
       return wrap;
     };
-    const half = Math.ceil(people.length / 2);
-    const a = people.slice(0, half), b = people.slice(half);
-    wall.append(row(a, false, 0));
-    if (b.length) wall.append(row(b, true, 3));
+    wall.append(row(people, false, 0));
     const note = $("#wallnote");
     if (note) note.hidden = !useSamples;
   }
