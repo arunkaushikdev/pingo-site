@@ -245,3 +245,14 @@
   const y = $("#year");
   if (y) y.textContent = new Date().getFullYear();
 })();
+
+// Timeline in the "several heads-ups" tile draws itself in when it scrolls into view.
+(function () {
+  const pts = document.querySelector(".points");
+  if (!pts) return;
+  if (!("IntersectionObserver" in window)) return;
+  pts.classList.add("arm");
+  new IntersectionObserver((en, io) => {
+    if (en[0].isIntersecting) { pts.classList.add("go"); io.disconnect(); }
+  }, { threshold: 0.4 }).observe(pts);
+})();

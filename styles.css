@@ -533,3 +533,19 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
   70%, 100% { box-shadow: 0 0 0 12px rgba(255, 217, 58, 0); }
 }
 @media (prefers-reduced-motion: reduce) { .nav .brand img { animation: none; } }
+
+/* heads-up timeline: fills the tile and draws itself in */
+.t-many .points { flex: 1; margin-top: 28px; padding-top: 0; align-content: space-between; }
+.points::before { transform-origin: top; }
+.points.arm::before { transform: scaleY(0); }
+.points.arm li { opacity: 0; transform: translateY(14px); }
+.points.arm li::before { transform: scale(0); }
+.points.go::before { transform: scaleY(1); transition: transform 1.6s cubic-bezier(.3,.7,.2,1) .1s; }
+.points.go li { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.points.go li::before { transform: scale(1); transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
+.points.go li:nth-child(1), .points.go li:nth-child(1)::before { transition-delay: .2s; }
+.points.go li:nth-child(2), .points.go li:nth-child(2)::before { transition-delay: .8s; }
+.points.go li:nth-child(3), .points.go li:nth-child(3)::before { transition-delay: 1.4s; }
+.points.go li.now::before { animation: nowPulse 2.2s ease-out 2s infinite; }
+@keyframes nowPulse { 0% { box-shadow: 0 0 0 0 rgba(254,216,57,.5); } 70%, 100% { box-shadow: 0 0 0 14px rgba(254,216,57,0); } }
+@media (prefers-reduced-motion: reduce) { .points.arm::before, .points.arm li, .points.arm li::before { transform: none; opacity: 1; } .points.go li.now::before { animation: none; } }
