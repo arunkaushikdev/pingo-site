@@ -503,3 +503,4 @@ footer { position: relative; overflow: hidden; background: #01140f; color: #a9c6
 .cert-wrap canvas { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 20px 60px -20px rgba(2,34,29,.4); background: #fff; }
 .cert-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0; }
 .cert-msg { color: var(--muted); max-width: 40rem; }
+.popup .sn { font-size: .66em; margin-top: 1em; }
