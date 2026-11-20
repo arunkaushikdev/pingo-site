@@ -16,7 +16,7 @@ const CONFIG = {
   // STEP 2. A Google Form asking: name, role (student or professional), organisation or college, LinkedIn (optional), and a tick-box "You may show my name on the Wall of Thanks".
   formUrl: "",
   // STEP 3. The "Join on the web" link from Play Console, Testing, Closed testing, Testers. Exists once your closed test is live.
-  optInUrl: "",
+  optInUrl: "https://play.google.com/apps/testing/com.adk.pingo",
   // Where testers report bugs and ideas: a Google Form or a WhatsApp group invite.
   feedbackUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfgLP28_GL95z0B8EOAUnal7x_v35h6gtQnEAOq82mA5hxCmw/viewform",
 
